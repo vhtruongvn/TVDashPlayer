@@ -37,7 +37,7 @@ Pod::Spec.new do |s|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  s.license      = "MIT"
+  # s.license      = "MIT"
   # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
 
 
@@ -89,7 +89,7 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "TVDashPlayer", "TVDashPlayer/**/*.{h,m,swift}"
+  s.source_files  = "TVDashPlayer", "TVDashPlayer/**/*.{h,m}"
   # s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
@@ -104,9 +104,9 @@ Pod::Spec.new do |s|
   #
 
   # s.resource  = "icon.png"
-  s.resources = "TVDashPlayer/*.xib"
+  s.resources = "TVDashPlayer/*.{png,xib,fsh,vsh}"
 
-  # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
+  s.preserve_paths = "TVDashPlayer/ffmpeg/lib/include"
 
 
   # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -116,10 +116,11 @@ Pod::Spec.new do |s|
   #
 
   # s.framework  = "SomeFramework"
-  # s.frameworks = "SomeFramework", "AnotherFramework"
+  s.frameworks = "UIKit", "Foundation", "CoreFoundation", "AudioToolbox", "QuartzCore", "GLKit", "Security", "CoreText", "CoreVideo", "CoreImage", "OpenGLES"
 
   # s.library   = "iconv"
   s.libraries = "iconv", "bz2.1.0", "z"
+  s.vendored_libraries = "TVDashPlayer/ffmpeg/lib/*.a"
 
 
   # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -128,9 +129,9 @@ Pod::Spec.new do |s|
   #  where they will only apply to your library. If you depend on other Podspecs
   #  you can include multiple dependencies to ensure it works.
 
-  # s.requires_arc = true
+  s.requires_arc = true
 
-  # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
+  s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(PODS_ROOT)/#{s.name}/ffmpeg/lib/include" }
   # s.dependency "JSONKit", "~> 1.4"
 
 end
